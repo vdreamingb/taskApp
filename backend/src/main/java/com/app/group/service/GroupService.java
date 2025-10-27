@@ -6,7 +6,9 @@ import com.app.group.exception.GroupNotFoundException;
 import com.app.group.exception.InvalidGroupException;
 import com.app.group.model.CreateGroupRequest;
 import com.app.group.model.Group;
+import com.app.group.model.GroupDTO;
 import com.app.group.repository.GroupRepository;
+import com.app.task.dto.TaskDTO;
 import com.app.task.model.Task;
 import com.app.task.repository.TaskRepository;
 import com.app.task.service.TaskService;
@@ -15,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -160,13 +163,10 @@ public class GroupService {
     }
 
 
-    public List<Group> getAllGroupsWithTasks() {
+    public List<GroupDTO> getAllGroupsWithTasks() {
         List<Group> allGroups = getAllGroups();
-        for (Group group : allGroups) {
-            List<Task> groupsTasks = taskRepository.findByGroup_Id(group.getId());
-            group.setTasks(groupsTasks);
-        }
-        return allGroups;
+        List<GroupDTO> groupDTOS = GroupDTO.toDtos(allGroups);
+        return groupDTOS;
     }
 
     public List<Group> getAllUsersGroupsWithTasks(int userId) {

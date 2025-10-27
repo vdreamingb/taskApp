@@ -25,6 +25,7 @@ public class Group {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
+    @ToString.Exclude
     private User user;
 
     @Column(nullable = false, length = 100)
@@ -41,5 +42,6 @@ public class Group {
     // Relations
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @ToString.Exclude
     private List<Task> tasks;
 }

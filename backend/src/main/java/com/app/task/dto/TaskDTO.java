@@ -34,7 +34,7 @@ public class TaskDTO {
     public static TaskDTO toDto(Task task) {
         return TaskDTO.builder()
                 .id(task.getId())
-                .groupName(task.getGroup().getName())
+                .groupName(task.getGroup() != null ? task.getGroup().getName() : null)
                 .title(task.getTitle())
                 .description(task.getDescription())
                 .deadline(task.getDeadline())

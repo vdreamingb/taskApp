@@ -145,6 +145,7 @@ public class TaskService {
         TaskStatus.isValid(request.getNewStatus());
 
         task.setStatus(request.getNewStatus());
+        task.setUpdatedAt(LocalDateTime.now());
         taskRepository.save(task);
 
         log.info("Updated status of task {} to {}", task.getId(), task.getStatus());

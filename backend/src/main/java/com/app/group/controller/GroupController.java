@@ -2,6 +2,7 @@ package com.app.group.controller;
 
 import com.app.group.model.CreateGroupRequest;
 import com.app.group.model.Group;
+import com.app.group.model.GroupDTO;
 import com.app.group.service.GroupService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +50,7 @@ public class GroupController {
     }
 
     @GetMapping("/all-with-tasks")
-    public ResponseEntity<List<Group>> getAllGroupsWithTasks() {
+    public ResponseEntity<List<GroupDTO>> getAllGroupsWithTasks() {
         log.debug("Fetching all groups with specific tasks");
         return ResponseEntity.ok(groupService.getAllGroupsWithTasks());
     }
