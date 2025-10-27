@@ -94,6 +94,7 @@ public class GroupService {
                 .description(request.getDescription())
                 .createdAt(LocalDateTime.now())
                 .user(user)
+                .isEnabled(true)
                 .build();
 
         Group savedGroup = groupRepository.save(newGroup);
