@@ -203,6 +203,7 @@ public class TaskService {
     public Task setTaskEnabled(int taskId, boolean enabled) {
         Task task = findTaskById(taskId);
         task.setEnabled(enabled);
+        task.setUpdatedAt(LocalDateTime.now());
         return taskRepository.save(task);
     }
 

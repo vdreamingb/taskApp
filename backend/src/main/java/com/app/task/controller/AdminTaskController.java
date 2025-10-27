@@ -65,14 +65,7 @@ public class AdminTaskController {
             @RequestParam boolean enabled
     ) {
         log.info("[ADMIN] Changing enabled state for task ID {} -> {}", taskId, enabled);
-        Task updatedTask = taskService.setTaskEnabled(taskId, enabled);
-
-        updatedTask.setUpdatedAt(LocalDateTime.now());
-
-        // save the updated time for the task
-        taskRepository.save(updatedTask);
-
-        return ResponseEntity.ok(TaskDTO.toDto(updatedTask));
+        return ResponseEntity.ok(TaskDTO.toDto(taskService.setTaskEnabled(taskId, enabled)));
     }
 
     // -------------------------------------------------------------------------
