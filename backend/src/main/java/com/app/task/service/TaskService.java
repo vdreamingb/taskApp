@@ -82,12 +82,12 @@ public class TaskService {
     /**
      * Retrieves all enabled tasks created by a specific user.
      *
-     * @param userId the ID of the user
      * @return a list of {@link TaskDTO} objects created by the user
      */
-    public List<TaskDTO> getUserTasks(int userId) {
-        log.debug("Fetching enabled tasks for user ID: {}", userId);
-        return TaskDTO.toDtos(taskRepository.findAllByIsEnabledTrueAndUserId(userId));
+    public List<TaskDTO> getUserTasks() {
+        User user = userService.getCurrentLoggedInUser();
+        log.debug("Fetching enabled tasks for user ID: {}",  user.getId());
+        return TaskDTO.toDtos(taskRepository.findAllByIsEnabledTrueAndUserId(user.getId()));
     }
 
     // -------------------------------------------------------------------------

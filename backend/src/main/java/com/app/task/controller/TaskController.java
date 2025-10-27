@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -88,13 +89,12 @@ public class TaskController {
     /**
      * Retrieves all tasks created by a specific user.
      *
-     * @param userId ID of the user
      * @return ResponseEntity containing a list of the user's {@link TaskDTO}s
      */
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<TaskDTO>> getUserTasks(@PathVariable int userId) {
-        log.debug("Fetching tasks for user ID: {}", userId);
-        return ResponseEntity.ok(taskService.getUserTasks(userId));
+    @GetMapping("/user")
+    public ResponseEntity<List<TaskDTO>> getUserTasks() {
+        log.info("Returning users tasks");
+        return ResponseEntity.ok(taskService.getUserTasks());
     }
 
     // -------------------------------------------------------------------------
