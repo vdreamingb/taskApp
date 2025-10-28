@@ -1,5 +1,5 @@
 import axios from "axios"
-import type { TaskType } from "../shared/types/task.types"
+import type { DeadlineTaskType, TaskType } from "../shared/types/task.types"
 
 class TaskService{
     private path = "http://localhost:8010/api/tasks/"
@@ -28,16 +28,15 @@ class TaskService{
 
     async getAllEnabledTasks(){
         const token = localStorage.getItem("userAuth")
-        const id = localStorage.getItem("userId")
         try {
-            const response = await axios.get(`${this.path}users/${id}/tasks`,{
+            const response = await axios.get(`${this.path}user`,{
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
             })
             if(response.status == 200){
                 const responseData = response.data
-                const organizedData = responseData.map((task) => {
+                const organizedData:TaskType[] = responseData.map((task) => {
                     return {
                         id: task.id,
                         title: task.title,
@@ -50,7 +49,7 @@ class TaskService{
                 })
                 const uniqueDates:string[] = [...new Set(organizedData.map((data: TaskType) => data.deadline))];
 
-                const filteredData = uniqueDates.map((deadline:string) => {
+                const filteredData:DeadlineTaskType[] = uniqueDates.map((deadline:string) => {
                     return {
                         deadline: deadline,
                         tasks: organizedData.filter((task:TaskType) => {
@@ -62,7 +61,7 @@ class TaskService{
                     }
                 })
 
-                return filteredData
+                return filteredData.sort().reverse()
             }
         } catch (error) {
             console.error(error)
@@ -71,7 +70,7 @@ class TaskService{
     async changeTaskStatus(id:number, status: string){
         try {
             const token = localStorage.getItem("userAuth")
-            await axios.put(`${this.path}`,{
+            await axios.put(`${this.path}status`,{
                 taskId: id,
                 newStatus: status
             },

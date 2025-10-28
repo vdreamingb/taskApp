@@ -13,7 +13,7 @@ const TaskForm = ({closeModal}:TaskFormType):React.JSX.Element => {
     const queryClient = useQueryClient()
     const { mutate } = useMutation({
         mutationFn: async (data: TaskType) => {
-            return await taskService.createTask(data.title, data.description, data.deadline, Number(data.group));
+            return await taskService.createTask(data.title, data.description, data.deadline, Number(data.groupName));
         },
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey:["tasks"]})
@@ -37,8 +37,8 @@ const TaskForm = ({closeModal}:TaskFormType):React.JSX.Element => {
                         <input className="select-input" type="date" {...register("deadline", {required: true})}/>
                     </div>
                     <div className="select-item">
-                        <label htmlFor="group" className="task-form__label">Group</label>
-                        <select className="select-input" {...register("group", {required: true})}>
+                        <label htmlFor="groupName" className="task-form__label">Group</label>
+                        <select className="select-input" {...register("groupName", {required: true})}>
                             {groups?.map((group) => 
                                 <option key={group.id} value={group.id}>{group.name}</option>
                             )}

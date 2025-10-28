@@ -4,6 +4,7 @@ import com.app.auth.model.User;
 import com.app.auth.service.UserService;
 import com.app.group.model.CreateGroupRequest;
 import com.app.group.model.Group;
+import com.app.group.model.GroupDTO;
 import com.app.group.repository.GroupRepository;
 import com.app.security.jwt.JwtUtils;
 import com.app.task.model.Task;
@@ -124,7 +125,7 @@ class GroupServiceTest {
         when(groupRepository.findAll()).thenReturn(List.of(mockGroup));
         when(taskService.getTasksByGroupId(1)).thenReturn(List.of(mockTask));
 
-        List<Group> result = groupService.getAllGroupsWithTasks();
+        List<GroupDTO> result = groupService.getAllGroupsWithTasks();
 
         assertEquals(1, result.size());
         assertEquals("Dev Team", result.get(0).getName());
@@ -140,7 +141,7 @@ class GroupServiceTest {
         when(groupRepository.findAll()).thenReturn(List.of(mockGroup));
         when(taskService.getTasksByGroupId(1)).thenReturn(List.of());
 
-        List<Group> result = groupService.getAllGroupsWithTasks();
+        List<GroupDTO> result = groupService.getAllGroupsWithTasks();
 
         assertEquals(1, result.size());
         assertTrue(result.get(0).getTasks().isEmpty());

@@ -282,7 +282,7 @@ body{
 
 .profile-form-input{
   border-radius: 5px;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   padding: 7px 0px 7px 8px;
   width: 100%;
   max-width: 324px;
@@ -294,8 +294,8 @@ body{
 }
 
 .submit-form{
-  background-color: #000;
-  color: #fff;
+  background-color: #ffffff;
+  color: #000;
   width: 135px;
   height: 31px;
   display: flex;
@@ -305,10 +305,11 @@ body{
   border-radius: 10px;
   font-size: 12px;
   transition: background-color .3s ease-in-out;
+  font-weight: 600;
 }
 
 .submit-form:hover{
-  background-color: #212121;
+  background-color: #c4bebe;
 }
 
 .profile-alert{
@@ -658,6 +659,12 @@ body{
   color: #FF0000;
 }
 
+.color{
+  color: #838383;
+}
+
+
+
 .change-password{
   font-size: 18px;
   color: #757575;
@@ -717,6 +724,11 @@ body{
     position: fixed;
     background-color: #212121;
   }
+}
+
+/* react-modal */
+.ReactModal__Overlay--after-open{
+  background-color: rgba(0,0,0,0.4) !important;
 }
 
 @media(max-width: 847px){

@@ -2,7 +2,7 @@ import PageLayout from "./PageLayout";
 import Filter from "../../widgets/profile/Filter";
 import TaskService from "../../services/task.service";
 import Task from "../../shared/ui/profile/content/tasks/Task";
-import type { DeadlineTaskType, ITask } from "../../shared/types/task.types";
+import type { DeadlineTaskType, TaskType } from "../../shared/types/task.types";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getDate } from "../../services/display.service";
 import useModal from "../../shared/custom-hooks/useModal";
@@ -49,7 +49,7 @@ const Content = () => {
           <li className="tasks-list__item" key={id}>
             <h5 className="deadline">Deadline: {getDate(item.deadline)}</h5>
             <ul>
-              {item.tasks.map((task: ITask, id: number) => (
+              {item.tasks.map((task: TaskType, id: number) => (
                 <Task
                   key={id}
                   id={task.id}

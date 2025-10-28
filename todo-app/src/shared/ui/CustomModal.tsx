@@ -10,10 +10,11 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    color: "#000",
+    color: "#fff",
     borderRadius: 5,
     padding: 40,
     transition: "all .4s ease-in-out",
+    backgroundColor: "#000"
   },
 };
 

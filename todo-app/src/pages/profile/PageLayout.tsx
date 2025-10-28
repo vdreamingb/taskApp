@@ -2,11 +2,15 @@ import type { PageLaoutType } from "../../shared/types/profile.types";
 import Aside from "../../widgets/profile/Aside";
 import useCheckAuth from "../../shared/custom-hooks/useCheckAuth";
 import useGroups from "../../shared/custom-hooks/useGroups";
-
+import { useMemo } from "react";
 
 const PageLayout = ({content }: PageLaoutType) => {
   const auth = useCheckAuth();
-    const paths = useGroups()
+  const paths = useGroups()
+
+  useMemo(() => paths ?? null, [paths])
+  useMemo(() => auth, [auth])
+
   if (auth) {
     return (
       <div className="profile-page__layout">

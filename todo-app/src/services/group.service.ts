@@ -6,7 +6,8 @@ class GroupService{
     async getGroups(){
         try {
             const token = localStorage.getItem("userAuth")
-            const response = await axios.get("http://localhost:8010/api/groups/all", {headers: {Authorization: `Bearer ${token}`}})
+            const userId = localStorage.getItem("userId")
+            const response = await axios.get(`http://localhost:8010/api/groups/${userId}/all`, {headers: {Authorization: `Bearer ${token}`}})
             if(response.status == 200){
                 return response.data
             }

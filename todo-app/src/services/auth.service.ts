@@ -35,11 +35,27 @@ class AuthService{
     }
 
     async whoAmI(){
-       
+        const token = localStorage.getItem("userAuth")
+        const response = await axios.get("http://localhost:8010/api/auth/whoami", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        const responseData = response.data
+        const username = responseData.name
+        const email = responseData.email
+        const role = responseData.role
+
+        return {
+            username,
+            email,
+            role
+        }
     }
 
     async logout(){
         localStorage.removeItem("userAuth")
+        localStorage.removeItem("userId")
     }
 }
 

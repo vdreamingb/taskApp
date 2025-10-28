@@ -41,7 +41,7 @@ export interface ITask{
 
 export interface DeadlineTaskType{
     deadline: string
-    tasks: ITask[]
+    tasks: TaskType[]
 }
 
 export interface ProgressType{

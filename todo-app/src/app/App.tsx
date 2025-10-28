@@ -6,6 +6,7 @@ import StartPage from "../pages/profile/StartPage"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import TasksListPage from "../pages/profile/TasksListPage"
 import ProfilePage from "../pages/profile/ProfilePage"
+import GroupPage from "../pages/profile/GroupPage"
 
 const queryClient = new QueryClient()
 
@@ -18,7 +19,7 @@ const App = ():React.JSX.Element => {
                 <Route path="/profile" element={<StartPage/>}/>
                 <Route path="/profile/tasks-list" element={<TasksListPage />}/>
                 <Route path="/profile/profile-settings" element={<ProfilePage />} />
-                <Route path="/profile/groups/:groupId" element={<>Hello world</>} />
+                <Route path="/profile/groups/:groupName" element={<GroupPage />} />
                 <Route path="/admin" element={<>Admin Login</>} />
                 <Route path="*" element={<>Error 404</>} />
             </Routes>

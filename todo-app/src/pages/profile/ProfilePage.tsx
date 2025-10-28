@@ -1,7 +1,21 @@
 import PageLayout from "./PageLayout"
 import type { UserType } from "../../shared/types/user.types"
+import { useEffect, useState } from "react"
+import AuthService from "../../services/auth.service"
 
-const Content = ({username, email}:Omit<UserType, "id">):React.JSX.Element => {
+
+const Content = ():React.JSX.Element => {
+    const userService = new AuthService()
+    const [userData,setUserData] = useState<UserType | null>(null)
+
+    useEffect(()=>{
+        async function getData(){
+            const data = await userService.whoAmI()
+            setUserData(data)
+        }
+        getData()
+    },[])
+
     return <>
         <div className="tasks-app__header">
             <h3 className="profile-title">
@@ -21,10 +35,10 @@ const Content = ({username, email}:Omit<UserType, "id">):React.JSX.Element => {
                 </div>
                 <div className="user-detailed__info">
                     <div className="detailed-info__item">
-                        Username: {username}
+                        Username: {userData?.username}
                     </div>
                     <div className="detailed-info__item">
-                        Email: {email}
+                        Email: {userData?.email}
                     </div>
                 </div>
                 
