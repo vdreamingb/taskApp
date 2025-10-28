@@ -344,11 +344,17 @@ body{
   display: block;
 }
 
+option{
+  background-color: #212121;
+}
+
 .select-input{
-  border: 1px solid #000;
+  border: 1px solid #fff;
+  color: #fff;
   border-radius: 5px;
   padding: 4px 10px;
   margin-top: 10px;
+  color-scheme: dark;
 }
 
 /* tasks-list */
@@ -385,14 +391,14 @@ body{
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-bottom: 20px;
 }
 
 .filter-form{
-  background-color: #fff;
-  color: #000;
+  background-color: #000;
+  color: #fff;
   border-radius: 5px;
 }
+
 
 .progress-radio{
   display: flex;
@@ -415,6 +421,7 @@ body{
   padding: 20px;
   width: max-content;
   height: max-content;
+  margin-top: 10px;
 }
 
 .filter-dates{
