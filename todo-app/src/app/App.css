@@ -355,6 +355,7 @@ option{
   padding: 4px 10px;
   margin-top: 10px;
   color-scheme: dark;
+  cursor: pointer;
 }
 
 /* tasks-list */
@@ -397,6 +398,7 @@ option{
   background-color: #000;
   color: #fff;
   border-radius: 5px;
+  border: 1px solid #fff;
 }
 
 
@@ -511,6 +513,10 @@ option{
   font-size: 20px;
 }
 
+.task-item{
+  position: relative;
+}
+
 .task-item:not(:last-child){
   margin-bottom: 10px;
 }
@@ -519,6 +525,7 @@ option{
   max-height: 0px;
   overflow: hidden;
   transition: max-height, padding .3s ease-in-out;
+  position: relative;
 }
 
 .task-detailed__info.active{
@@ -656,13 +663,13 @@ option{
 
 
 
-.delete-account{
+.delete-button{
   color: #db0000;
   font-size: 18px;
   transition: color .4s ease-in-out;
 }
 
-.delete-account:hover{
+.delete-button:hover{
   color: #FF0000;
 }
 
@@ -738,6 +745,11 @@ option{
   background-color: rgba(0,0,0,0.4) !important;
 }
 
+.ReactModalPortal{
+  transition: all .4s ease-in-out;  
+}
+
+
 @media(max-width: 847px){
   .profile-content{
     padding-right: 15px;
@@ -749,5 +761,77 @@ option{
   }
   .task-title{
     max-width: 150px;
+  }
+}
+
+@media(max-width: 623px){
+  .task-general-info{
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .task-title{
+    max-width: max-content;
+  }
+}
+
+@media(max-width: 566px){
+  .form-field{
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .ReactModal__Content{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .task-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-selections__select{
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .select-input{
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .filter-content{
+    flex-direction: column;
+  }
+
+  .filter-form.active{
+    right: 10px;
+  }
+
+  .profile-form-input{
+    width: 100%;
+    max-width: 250px;
+  }
+
+}
+.task-delete{
+  margin-top: 15px;
+}
+
+@media(max-width: 442px){
+  .profile-content{
+    padding-left: 55px;
+    padding-top: 33px;
+  }
+
+  .tasks-app__header{
+    flex-wrap: wrap;
+    gap: 30px;
   }
 }

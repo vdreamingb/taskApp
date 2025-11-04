@@ -34,7 +34,7 @@ const TaskForm = ({closeModal}:TaskFormType):React.JSX.Element => {
                 <div className="form-selections__select">
                     <div className="select-item">
                         <label htmlFor="deadline" className="task-form__label">Deadline</label>
-                        <input className="select-input" type="date" {...register("deadline", {required: true})}/>
+                        <input className="select-input" type="date" {...register("deadline", {required: true, pattern: /^(?!$)(?:[0-9]{4}-[0-9]{2}-[0-9]{2}|.+)$/ })}/>
                     </div>
                     <div className="select-item">
                         <label htmlFor="groupName" className="task-form__label">Group</label>

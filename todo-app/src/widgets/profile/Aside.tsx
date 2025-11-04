@@ -13,6 +13,7 @@ import CreateGroupForm from "./CreateGroupForm";
 
 const Aside = ({ paths }: AsideType): React.JSX.Element => {
   const modalProperties = useModal()
+  console.log(paths)
 
   const asideRef = useRef(null);
 

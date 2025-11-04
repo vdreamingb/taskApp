@@ -4,7 +4,7 @@ import type { AsideType, Group } from "../../shared/types/profile.types"
 const TaskGroups = ({paths}:AsideType) => {
     return <ul className="task-groups">
         {paths?.map((link:Group) =>
-            <GroupsItem key={link.id} path={link.name}/>
+            <GroupsItem id={link.id} key={link.id} path={link.name}/>
         )}
     </ul>
 }

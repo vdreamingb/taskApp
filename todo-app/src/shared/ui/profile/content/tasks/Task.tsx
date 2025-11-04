@@ -1,6 +1,8 @@
 import type { ITask } from "../../../../types/task.types";
 import { getProgressName } from "../../../../../services/display.service";
 import { useRef } from "react";
+import TaskService from "../../../../../services/task.service";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const Task = ({
   id,
@@ -14,6 +16,16 @@ const Task = ({
 }: Omit<ITask, "deadline">): React.JSX.Element => {
   const fullInfoRef = useRef<HTMLDivElement | null>(null);
   const dropdownRef = useRef<HTMLImageElement | null>(null);
+  const queryClient = useQueryClient()
+  const { mutate } = useMutation({
+        mutationFn: async (id: number) => {
+            const taskService = new TaskService()
+            await taskService.deleteTask(id)
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["tasks"]})
+        }
+    })
 
   function onClick() {
     if (fullInfoRef.current && dropdownRef) {
@@ -25,6 +37,10 @@ const Task = ({
   function onChangeClick(){
     setId(id)
     ref.current()
+  }
+
+  function onDeleteTaskClick(id:number){
+    mutate(id)
   }
 
   return (
@@ -49,6 +65,9 @@ const Task = ({
       <div ref={fullInfoRef} className="task-detailed__info">
         <p className="task-description">{description}</p>
         <p className="group">Group: {groupName}</p>
+        <button onClick={() => onDeleteTaskClick(id)} className="delete-button task-delete">
+          Delete
+        </button>
       </div>
     </div>
   );

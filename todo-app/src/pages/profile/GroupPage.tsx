@@ -9,25 +9,32 @@ import ChangeProgressForm from "../../widgets/profile/ChangeProgressForm"
 import useModal from "../../shared/custom-hooks/useModal"
 import { useState, useRef, useMemo} from "react"
 import type { TaskType } from "../../shared/types/task.types"
+import GroupService from "../../services/group.service"
 
 interface Props{
-    groupName: string | undefined
+    groupName: string | undefined,
+    groupId: number | undefined
 }
 
-const Content = ({groupName}:Props):React.JSX.Element => {
+const Content = ({groupName, groupId}:Props):React.JSX.Element => {
     const modalProperties1 = useModal()
     const [id,setId] = useState<number>(0)
     useQueryClient()
     const statusFormRef = useRef(modalProperties1.openModal)
-    
+    const groupService = new GroupService()
     const tasksQuery = useQuery({
-        queryKey: ["group-tasks", groupName],
+        queryKey: ["tasks", groupName],
         queryFn: async () => await taskGroupService.getTasks(String(groupName)),
     });
+
+    async function onClick(){
+        await groupService.deleteGroup(Number(groupId))
+    }
 
     return <>
         <div className="tasks-app__header">
             <h4 className="profile-title">{groupName}</h4>
+            <button onClick={onClick} className="delete-button">Delete Group</button>
         </div>
         <ul className="tasks-list">
         {tasksQuery.data?.map((data, id) => 
@@ -56,11 +63,11 @@ const Content = ({groupName}:Props):React.JSX.Element => {
 }
 
 const GroupPage = ():React.JSX.Element => {
-    const { groupName } = useParams()
+    const { groupName, id } = useParams()
 
     useMemo(()=> groupName, [groupName])
 
-    return <PageLayout content={<Content groupName={groupName} />} />
+    return <PageLayout content={<Content groupName={groupName} groupId={Number(id)} />} />
 }
 
 export default GroupPage

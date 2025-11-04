@@ -19,7 +19,7 @@ const App = ():React.JSX.Element => {
                 <Route path="/profile" element={<StartPage/>}/>
                 <Route path="/profile/tasks-list" element={<TasksListPage />}/>
                 <Route path="/profile/profile-settings" element={<ProfilePage />} />
-                <Route path="/profile/groups/:groupName" element={<GroupPage />} />
+                <Route path="/profile/groups/:groupName/:id" element={<GroupPage />} />
                 <Route path="/admin" element={<>Admin Login</>} />
                 <Route path="*" element={<>Error 404</>} />
             </Routes>

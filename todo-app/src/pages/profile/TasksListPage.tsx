@@ -1,5 +1,4 @@
 import PageLayout from "./PageLayout";
-import Filter from "../../widgets/profile/Filter";
 import TaskService from "../../services/task.service";
 import Task from "../../shared/ui/profile/content/tasks/Task";
 import type { DeadlineTaskType, TaskType } from "../../shared/types/task.types";
@@ -33,7 +32,7 @@ const Content = () => {
         >
           + Create task
         </button>
-        <Filter />
+        {/* <Filter /> */}
       </div>
       <CustomModal title="Change status" modalIsOpen={modalProperties1.modalIsOpen} closeModal={modalProperties1.closeModal} form={<ChangeProgressForm id={id} closeModal={modalProperties1.closeModal} />} />
       <CustomModal

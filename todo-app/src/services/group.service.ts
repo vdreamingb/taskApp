@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 class GroupService{
     async getGroups(){
         try {
@@ -34,6 +32,19 @@ class GroupService{
             }
         }catch(error){
             console.error("Something went wrong ", error)
+        }
+    }
+
+    async deleteGroup(id: number){
+        try {
+            const token = localStorage.getItem("userAuth")
+            await axios.delete(`http://localhost:8010/api/admin/groups/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        } catch (error) {
+            console.error(error)
         }
     }
 }

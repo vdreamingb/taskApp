@@ -57,11 +57,11 @@ class TaskService{
                                 return task
                             }
                             return undefined
-                        }).filter(Boolean)
+                        }).sort((a, b) => new Date(b.deadline).getTime() - new Date(a.deadline).getTime())
                     }
                 })
 
-                return filteredData.sort().reverse()
+                return filteredData.sort((a, b) => new Date(b.deadline).getTime() - new Date(a.deadline).getTime())
             }
         } catch (error) {
             console.error(error)
@@ -81,6 +81,23 @@ class TaskService{
             })
         } catch (error) {
             console.error(error)
+        }
+    }
+
+    async deleteTask(id: number){
+        try {
+            const token = localStorage.getItem("userAuth")
+            await axios.delete(`http://localhost:8010/api/admin/tasks/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                alert("Error: " + error.message)
+            } else {
+                alert("An unknown error occurred")
+            }
         }
     }
 }
