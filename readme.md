@@ -54,7 +54,8 @@ Open it in your browser — that’s your running Task App 🎉
 Frontend respects following folder structure:
 
 ![Folder structure](/doc-images/folder-structure.png)
-Each folder has it's meaning.
+
+##### Each folder has it's meaning.
 1. 📁 app/
 
 - Contains the main application files:
