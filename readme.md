@@ -36,3 +36,4 @@ Open it in your browser — that’s your running Task App 🎉
 ## Frontend explanation
 #### You can view the Figma design of the app using the following link:👉: [View Figma Design](https://www.figma.com/design/TiYjG69zaONjtmOVqDx4Bu/Untitled?node-id=0-1&p=f&t=LBbTqqEBZvyE1uBn-0)
 Frontend respects following folder structure:
+![Folder structure](/doc-images/folder-structure.png)
