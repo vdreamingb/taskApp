@@ -11,15 +11,15 @@
 
 2. Each task includes:
 
-  -  - 🏷️ Group – category or collection the task belongs to.
+ - 🏷️ Group – category or collection the task belongs to.
 
-   - - ⚙️ Status – can be Done, In Process, or Not Done.
+ - ⚙️ Status – can be Done, In Process, or Not Done.
 
-   - - 📅 Deadline – date by which the task must be completed.
+ - 📅 Deadline – date by which the task must be completed.
 
-   - - 📝 Description – details of the task.
+ - 📝 Description – details of the task.
 
-📆 Creation Date – when the task was created.
+ - 📆 Creation Date – when the task was created.
 
 ## Tech stack
 1. Java jdk
@@ -50,7 +50,63 @@
 Open it in your browser — that’s your running Task App 🎉
 
 ## Frontend explanation
-#### You can view the Figma design of the app using the following link:👉: [View Figma Design](https://www.figma.com/design/TiYjG69zaONjtmOVqDx4Bu/Untitled?node-id=0-1&p=f&t=LBbTqqEBZvyE1uBn-0)
+#### You can view the Figma design of the app using the following link 👉 : [View Figma Design](https://www.figma.com/design/TiYjG69zaONjtmOVqDx4Bu/Untitled?node-id=0-1&p=f&t=LBbTqqEBZvyE1uBn-0)
 Frontend respects following folder structure:
 
 ![Folder structure](/doc-images/folder-structure.png)
+Each folder has it's meaning.
+1. 📁 app/
+
+- Contains the main application files:
+
+- App.tsx – defines the main routes of the app.
+
+- App.css – includes custom global styles.
+
+2. 🌍 locales/
+
+- Contains translation files for multiple languages.
+
+- Used for internationalization (i18n) of pages and components.
+
+3. 📄 pages/
+
+- Contains all individual pages of the application.
+
+- Each page represents a route in the app (e.g., /home, /profile).
+
+4. 🔌 services/
+
+- Handles communication with the backend API.
+
+- Organized by entities — for example: userService, taskService, etc.
+
+5. 🧩 shared/
+
+- Contains reusable components and utilities.
+
+- Components are organized by their purpose (e.g., auth, profile, buttons, etc.).
+
+6. 🧱 widgets/
+
+- Contains larger composite components that include smaller reusable parts.
+
+- Examples: forms, sidebars, or complex UI sections.
+
+## Tech Stack Used in Frontend
+
+1. TypeScript – adds static typing to JavaScript for safer, more maintainable code.
+
+2. React – library for building user interfaces.
+
+3. React Router – handles routing and navigation between pages.
+
+4. React Hook Form – simplifies form handling and validation.
+
+5. Axios – used for making HTTP requests to the backend API.
+
+6. i18n (react-i18next) – enables multi-language support and translations.
+
+7. React Modal – for creating modal dialogs and pop-ups.
+
+8. React Query – manages server state and API data fetching efficiently.
