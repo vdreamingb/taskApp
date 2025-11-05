@@ -4,6 +4,7 @@ import type { SubmitHandler } from "react-hook-form"
 import type { ProgressType } from "../../shared/types/task.types"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import TaskService from "../../services/task.service"
+import { useTranslation } from "react-i18next"
 
 type ChangeType = {
     id: number
@@ -12,6 +13,7 @@ type ChangeType = {
 
 const ChangeProgressForm = ({id, closeModal}:ChangeType):React.JSX.Element => {
     const { register, handleSubmit } = useForm<ProgressType>()
+    const {t} = useTranslation()
     const queryClient = useQueryClient()
     const { mutate } = useMutation({
         mutationFn: async (data:ProgressType) => {
@@ -33,7 +35,7 @@ const ChangeProgressForm = ({id, closeModal}:ChangeType):React.JSX.Element => {
             <ProgressRadio type="not-done" inputElement={<input type="radio" className="progress-radio__input" id="not-done" value="NOT_DONE" {...register("progress", {required: true})} />}/>
             <ProgressRadio type="in-process" inputElement={<input type="radio" className="progress-radio__input" id="in-process" value="IN_PROCESS" {...register("progress", {required: true})} />}/>
         </div>
-        <button className="submit-form" type="submit">Change</button>
+        <button className="submit-form" type="submit">{t("Change")}</button>
     </form>
 }
 

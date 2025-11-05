@@ -10,6 +10,7 @@ import useModal from "../../shared/custom-hooks/useModal"
 import { useState, useRef, useMemo} from "react"
 import type { TaskType } from "../../shared/types/task.types"
 import GroupService from "../../services/group.service"
+import { useTranslation } from "react-i18next"
 
 interface Props{
     groupName: string | undefined,
@@ -19,6 +20,7 @@ interface Props{
 const Content = ({groupName, groupId}:Props):React.JSX.Element => {
     const modalProperties1 = useModal()
     const [id,setId] = useState<number>(0)
+    const { t } = useTranslation()
     useQueryClient()
     const statusFormRef = useRef(modalProperties1.openModal)
     const groupService = new GroupService()
@@ -34,12 +36,12 @@ const Content = ({groupName, groupId}:Props):React.JSX.Element => {
     return <>
         <div className="tasks-app__header">
             <h4 className="profile-title">{groupName}</h4>
-            <button onClick={onClick} className="delete-button">Delete Group</button>
+            <button onClick={onClick} className="delete-button">{t("Delete group")}</button>
         </div>
         <ul className="tasks-list">
         {tasksQuery.data?.map((data, id) => 
             <li key={id} className="tasks-list__item">
-                <h5 className="deadline">Deadline: {getDate(data.deadline)}</h5>
+                <h5 className="deadline">{t("Deadline")}: {getDate(data.deadline)}</h5>
             <ul>
               {data.tasks.map((task: TaskType, id: number) => (
                 <Task

@@ -3,6 +3,7 @@ import { getProgressName } from "../../../../../services/display.service";
 import { useRef } from "react";
 import TaskService from "../../../../../services/task.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 const Task = ({
   id,
@@ -14,6 +15,7 @@ const Task = ({
   ref,
   setId,
 }: Omit<ITask, "deadline">): React.JSX.Element => {
+  const { t } = useTranslation();
   const fullInfoRef = useRef<HTMLDivElement | null>(null);
   const dropdownRef = useRef<HTMLImageElement | null>(null);
   const queryClient = useQueryClient()
@@ -46,11 +48,11 @@ const Task = ({
   return (
     <div className="task-item">
       <div className="task-general-info">
-        <h4 className="task-title"><span>Title:</span> {title}</h4>
-        <p className="task-create__date">Creation Date: {creationDate}</p>
+        <h4 className="task-title"><span>{t("Title")}:</span> {title}</h4>
+        <p className="task-create__date">{t("Creation Date")}: {creationDate}</p>
         <div className="progress-dropdown">
           <button onClick={onChangeClick}  id={progress.toLowerCase()} className="task-progress">
-            {getProgressName(progress)}
+            {t(getProgressName(progress))}
           </button>
           <button className="dropdown-button" onClick={onClick}>
             <img
@@ -64,9 +66,9 @@ const Task = ({
       </div>
       <div ref={fullInfoRef} className="task-detailed__info">
         <p className="task-description">{description}</p>
-        <p className="group">Group: {groupName}</p>
+        <p className="group">{t("Group")}: {groupName}</p>
         <button onClick={() => onDeleteTaskClick(id)} className="delete-button task-delete">
-          Delete
+          {t("Delete")}
         </button>
       </div>
     </div>

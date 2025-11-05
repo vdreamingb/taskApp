@@ -10,11 +10,12 @@ import ProfileLinkButton from "../../shared/ui/profile/aside/ProfileLinkButton";
 import CustomModal from "../../shared/ui/CustomModal";
 import useModal from "../../shared/custom-hooks/useModal";
 import CreateGroupForm from "./CreateGroupForm";
+import { useTranslation } from "react-i18next";
 
 const Aside = ({ paths }: AsideType): React.JSX.Element => {
   const modalProperties = useModal()
   console.log(paths)
-
+  const {t} = useTranslation()
   const asideRef = useRef(null);
 
   return (
@@ -32,13 +33,13 @@ const Aside = ({ paths }: AsideType): React.JSX.Element => {
                 className="profile-link aside-link"
                 to={`/profile/tasks-list`}
               >
-                Tasks list
+                {t("Tasks list")}
               </Link>
             </div>
             <div className="aside-footer__bottom">
               <AsideTitle text="Task groups" />
               <button onClick={modalProperties.openModal} className="create-group groups-item">
-                + Add new group
+                + {t("Add new group")}
               </button>
               <TaskGroups paths={paths} />
             </div>

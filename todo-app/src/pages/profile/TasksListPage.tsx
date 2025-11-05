@@ -9,10 +9,12 @@ import CustomModal from "../../shared/ui/CustomModal";
 import TaskForm from "../../widgets/profile/TaskForm";
 import ChangeProgressForm from "../../widgets/profile/ChangeProgressForm";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Content = () => {
   const [id, setId] = useState(0)
   const taskSerivice = new TaskService();
+  const { t } = useTranslation()
   useQueryClient();
   const data = useQuery({
     queryKey: ["tasks"],
@@ -25,12 +27,12 @@ const Content = () => {
   return (
     <div className="tasks-list__content">
       <div className="tasks-app__header">
-        <div className="profile-title">Tasks list</div>
+        <div className="profile-title">{t("Tasks list")}</div>
         <button
           onClick={modalProperties2.openModal}
           className="create-task__button"
         >
-          + Create task
+          + {t("Create task")}
         </button>
         {/* <Filter /> */}
       </div>
@@ -46,7 +48,7 @@ const Content = () => {
       <ul className="tasks-list">
         {data?.data?.flatMap((item: DeadlineTaskType, id: number) => (
           <li className="tasks-list__item" key={id}>
-            <h5 className="deadline">Deadline: {getDate(item.deadline)}</h5>
+            <h5 className="deadline">{t("Deadline")}: {getDate(item.deadline)}</h5>
             <ul>
               {item.tasks.map((task: TaskType, id: number) => (
                 <Task

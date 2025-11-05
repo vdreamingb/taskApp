@@ -5,12 +5,13 @@ import AuthService from "../../services/auth.service"
 import CustomModal from "../../shared/ui/CustomModal"
 import useModal from "../../shared/custom-hooks/useModal"
 import ChangePasswordForm from "../../widgets/profile/ChangePasswordForm"
-
+import { useTranslation } from "react-i18next"
 
 const Content = ():React.JSX.Element => {
     const authService = new AuthService()
     const [userData,setUserData] = useState<UserType | null>(null)
     const modalProperties = useModal()
+    const {t} = useTranslation()
 
     useEffect(()=>{
         async function getData(){
@@ -21,15 +22,15 @@ const Content = ():React.JSX.Element => {
     },[])
 
     return <>
-        <div onClick={modalProperties.openModal} className="tasks-app__header">
+        <div className="tasks-app__header">
             <h3 className="profile-title">
-                Profile
+                {t("Profile")}
             </h3>
-            <button className="change-password">
-                Change password
+            <button onClick={modalProperties.openModal} className="change-password">
+                {t("Change password")}
             </button>
             <button className="delete-button">
-                Delete account
+                {t("Delete account")}
             </button>
         </div>
         <div className="profile-settings__content">
@@ -39,10 +40,10 @@ const Content = ():React.JSX.Element => {
                 </div>
                 <div className="user-detailed__info">
                     <div className="detailed-info__item">
-                        Username: {userData?.username}
+                        {t("Username")}: {userData?.username}
                     </div>
                     <div className="detailed-info__item">
-                        Email: {userData?.email}
+                        {t("Email")}: {userData?.email}
                     </div>
                 </div>
                 

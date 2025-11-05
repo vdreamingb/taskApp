@@ -5,11 +5,13 @@ import FormField from "../../shared/ui/profile/content/form/FormField"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import TaskService from "../../services/task.service"
 import useGroups from "../../shared/custom-hooks/useGroups"
+import { useTranslation } from "react-i18next"
 
 const taskService = new TaskService()
 
 const TaskForm = ({closeModal}:TaskFormType):React.JSX.Element => {
     const { register, handleSubmit } = useForm<TaskType>()
+    const {t} = useTranslation()
     const queryClient = useQueryClient()
     const { mutate } = useMutation({
         mutationFn: async (data: TaskType) => {
@@ -33,11 +35,11 @@ const TaskForm = ({closeModal}:TaskFormType):React.JSX.Element => {
             <div className="task-form__selections">
                 <div className="form-selections__select">
                     <div className="select-item">
-                        <label htmlFor="deadline" className="task-form__label">Deadline</label>
+                        <label htmlFor="deadline" className="task-form__label">{t("Deadline")}</label>
                         <input className="select-input" type="date" {...register("deadline", {required: true, pattern: /^(?!$)(?:[0-9]{4}-[0-9]{2}-[0-9]{2}|.+)$/ })}/>
                     </div>
                     <div className="select-item">
-                        <label htmlFor="groupName" className="task-form__label">Group</label>
+                        <label htmlFor="groupName" className="task-form__label">{t("Group")}</label>
                         <select className="select-input" {...register("groupName", {required: true})}>
                             {groups?.map((group) => 
                                 <option key={group.id} value={group.id}>{group.name}</option>
@@ -46,7 +48,7 @@ const TaskForm = ({closeModal}:TaskFormType):React.JSX.Element => {
                     </div>
                 </div>
             </div>
-            <button className="submit-form" type="submit">Create</button>
+            <button className="submit-form" type="submit">{t("Create")}</button>
         </div>
     </form>
 }

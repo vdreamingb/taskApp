@@ -4,6 +4,7 @@ import FormField from "../../shared/ui/profile/content/form/FormField"
 import type { SubmitHandler } from "react-hook-form"
 import GroupService from "../../services/group.service"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useTranslation } from "react-i18next"
 
 const groupService = new GroupService()
 
@@ -14,6 +15,7 @@ type CreateGroupFormType = {
 const CreateGroupForm = ({closeModal}:CreateGroupFormType) => {
     const {register, handleSubmit, formState: {errors}} = useForm<CreateGroupType>()
     const queryClient = useQueryClient()
+    const {t} = useTranslation()
     const { mutate } = useMutation({
         mutationFn: async (data: CreateGroupType) => await groupService.createGroup(data.name, data.description),
         onSuccess: () => {
@@ -29,7 +31,7 @@ const CreateGroupForm = ({closeModal}:CreateGroupFormType) => {
         <FormField name="name" labelText="Name" inputElement={<input className="profile-form-input" {...register("name", {required: true, minLength: 3})}  />} />
         {errors.name && <p className="profile-alert input-alert">Name is required and must be longer than three characters</p>}
         <FormField name="description" labelText="Description" inputElement={<textarea className="profile-form-input form-text-area"></textarea>} />
-        <button  className="submit-form" type="submit">Create</button>
+        <button  className="submit-form" type="submit">{t("Create")}</button>
     </form>
 }
 

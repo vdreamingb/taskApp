@@ -21,7 +21,7 @@ const ChangePasswordForm = ({email, closeModal}:ChangePasswordFormType) => {
         {errors.oldPassword ? <p>The field should be filled</p> : null}
         <FormField labelText="New Password" name="newPassword" inputElement={<input className="profile-form-input" type="password" {...register("newPassword", {required: true})}/>} />
         {errors.newPassword ? <p>The field should be filled</p> : null}
-        <button type="submit" className="submit-form">Change</button>
+        <button type="submit" className="submit-form">t("Change")</button>
     </form>
 }
 

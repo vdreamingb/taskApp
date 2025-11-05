@@ -1,5 +1,6 @@
 import Modal from "react-modal"
 import type { ModalType } from "../types/profile.types";
+import { useTranslation } from "react-i18next";
 
 Modal.setAppElement("#root")
 const customStyles = {
@@ -19,10 +20,10 @@ const customStyles = {
 };
 
 const CustomModal = ({form, modalIsOpen, closeModal,title}:ModalType) => {
-
+    const { t } = useTranslation();
     return <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style = {customStyles}>
       <div className="modal-header">
-        <h2 className="modal-title">{title}</h2>
+        <h2 className="modal-title">{t(title)}</h2>
         <button className="close-modal" onClick={closeModal}><img src="/assets/close-form.svg" alt="Close form" /></button>
       </div>
       {form}

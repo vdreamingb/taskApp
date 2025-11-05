@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next";
 
 const LogOutButton = ():React.JSX.Element => {
+    const { t } = useTranslation();
     const navigate = useNavigate()
 
     function onClick(){
@@ -9,7 +11,7 @@ const LogOutButton = ():React.JSX.Element => {
     }
 
     return <button onClick={onClick} className="log-out__button profile-button">
-        Log out <img src="/assets/arrow.svg" alt="Arrow" />
+        {t("Log out")} <img src="/assets/arrow.svg" alt="Arrow" />
     </button>
 }
 
