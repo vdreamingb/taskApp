@@ -117,6 +117,32 @@ public class TaskController {
     }
 
     // -------------------------------------------------------------------------
+// 🔹 DELETE
+// -------------------------------------------------------------------------
+
+/**
+ * Deletes a specific task by its ID.
+ *
+ * @param taskId ID of the task to delete
+ * @return ResponseEntity indicating whether the deletion was successful
+ */
+@DeleteMapping("/{taskId}")
+public ResponseEntity<Void> deleteTask(@PathVariable int taskId) {
+    log.info("Received request to delete task with ID: {}", taskId);
+    
+    boolean isDeleted = taskService.deleteTask(taskId);
+    
+    if (isDeleted) {
+        log.info("Task with ID: {} deleted successfully", taskId);
+        return ResponseEntity.noContent().build();  // HTTP 204 No Content (success)
+    } else {
+        log.warn("Task with ID: {} not found for deletion", taskId);
+        return ResponseEntity.notFound().build();  // HTTP 404 Not Found
+    }
+}
+
+
+    // -------------------------------------------------------------------------
     // 🔹 (OPTIONAL FUTURE) SEARCH
     // -------------------------------------------------------------------------
     // If you plan to reintroduce search later:
