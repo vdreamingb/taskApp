@@ -88,6 +88,31 @@ public class AuthController {
     }
 
     // -------------------------------------------------------------------------
+// 🔹 DELETE USER ACCOUNT
+// -------------------------------------------------------------------------
+
+/**
+ * Deletes the currently authenticated user account.
+ *
+ * @return ResponseEntity indicating whether the deletion was successful or not
+ */
+@DeleteMapping("/delete")
+public ResponseEntity<String> deleteUserAccount() {
+    log.info("Received request to delete user account");
+
+    boolean isDeleted = userService.deleteUserAccount();
+
+    if (isDeleted) {
+        log.info("User account deleted successfully");
+        return ResponseEntity.ok("User account deleted successfully.");
+    } else {
+        log.warn("User account not found or deletion failed");
+        return ResponseEntity.status(400).body("Failed to delete user account.");
+    }
+}
+
+
+    // -------------------------------------------------------------------------
     // 🔹 CURRENT USER INFO
     // -------------------------------------------------------------------------
 
