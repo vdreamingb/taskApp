@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import PageLayout from "./PageLayout"
 import { taskGroupService } from "../../services/task-group.service"
-import { useQuery, useQueryClient} from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient} from "@tanstack/react-query"
 import Task from "../../shared/ui/profile/content/tasks/Task"
 import { getDate } from "../../services/display.service"
 import CustomModal from "../../shared/ui/CustomModal"
@@ -21,16 +21,25 @@ const Content = ({groupName, groupId}:Props):React.JSX.Element => {
     const modalProperties1 = useModal()
     const [id,setId] = useState<number>(0)
     const { t } = useTranslation()
-    useQueryClient()
+    const queryClient = useQueryClient()
     const statusFormRef = useRef(modalProperties1.openModal)
     const groupService = new GroupService()
+    const navigate = useNavigate()
     const tasksQuery = useQuery({
         queryKey: ["tasks", groupName],
         queryFn: async () => await taskGroupService.getTasks(String(groupName)),
     });
 
+    const {mutate} = useMutation({
+        mutationFn: async () => await groupService.deleteGroup(Number(groupId)),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["groups"]})
+        }
+    })
+
     async function onClick(){
-        await groupService.deleteGroup(Number(groupId))
+        mutate()
+       navigate("/profile")
     }
 
     return <>

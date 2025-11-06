@@ -174,14 +174,6 @@ public class GroupService {
         return group;
     }
 
-    public void deleteGroup(int groupId) {
-        Group group = groupRepository.findById(groupId)
-                .orElseThrow(() -> new GroupNotFoundException("Group not found with ID: " + groupId));
-
-        groupRepository.delete(group);
-        log.info("Deleted group ID {}", groupId);
-    }
-
 
     public List<GroupDTO> getAllGroupsWithTasks() {
         List<Group> allGroups = getAllGroups();

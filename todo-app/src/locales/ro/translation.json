@@ -8,7 +8,7 @@
     "Tasks": "Sarcinile",
     "Task groups": "Grupuri",
     "Log out": "Delogare",
-    "Create new task": "Creaza o sarcină nouă",
+    "Create new task": "Crează o sarcină nouă",
     "Let's start": "Start",
     "Deadline": "Ziua limită",
     "Title": "Titlu",
@@ -35,5 +35,7 @@
     "Create group": "Crează grup",
     "Name": "Nume",
     "Description": "Descriere",
-    "Change password": "Schimbă parola"
+    "Change password": "Schimbă parola",
+    "Username is required and must constain at least 3 letters.": "Numele de utilizator nu trbuie sa fie mai scurt de trei caractere.",
+    "Password must contain at least one big letter one number and more than 6 characters": "Parola trebuie sa conție o literă mare un numar și mai mult de 6 caractere."
 }

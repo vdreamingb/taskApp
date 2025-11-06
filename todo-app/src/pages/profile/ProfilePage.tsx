@@ -6,12 +6,15 @@ import CustomModal from "../../shared/ui/CustomModal"
 import useModal from "../../shared/custom-hooks/useModal"
 import ChangePasswordForm from "../../widgets/profile/ChangePasswordForm"
 import { useTranslation } from "react-i18next"
+import { userService } from "../../services/user.service"
+import { useNavigate } from "react-router-dom"
 
 const Content = ():React.JSX.Element => {
     const authService = new AuthService()
     const [userData,setUserData] = useState<UserType | null>(null)
     const modalProperties = useModal()
     const {t} = useTranslation()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         async function getData(){
@@ -21,6 +24,11 @@ const Content = ():React.JSX.Element => {
         getData()
     },[])
 
+    async function onClick(){
+        await userService.deleteAccount()
+        navigate("/")
+    }
+
     return <>
         <div className="tasks-app__header">
             <h3 className="profile-title">
@@ -29,7 +37,7 @@ const Content = ():React.JSX.Element => {
             <button onClick={modalProperties.openModal} className="change-password">
                 {t("Change password")}
             </button>
-            <button className="delete-button">
+            <button onClick={onClick} className="delete-button">
                 {t("Delete account")}
             </button>
         </div>

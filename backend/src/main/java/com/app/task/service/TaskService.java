@@ -4,7 +4,6 @@ import com.app.auth.model.User;
 import com.app.auth.service.UserService;
 import com.app.group.model.Group;
 import com.app.group.service.GroupService;
-import com.app.security.jwt.JwtUtils;
 import com.app.task.dto.TaskDTO;
 import com.app.task.exception.InvalidTaskException;
 import com.app.task.exception.TaskNotFoundException;
@@ -13,7 +12,6 @@ import com.app.task.model.CreateTaskRequest;
 import com.app.task.model.Task;
 import com.app.task.model.TaskStatus;
 import com.app.task.repository.TaskRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,24 +150,6 @@ public class TaskService {
         return TaskDTO.toDto(task);
     }
 
-    
-    /**
-     * Deletes a specific task by its ID.
-     *
-     * @param taskId ID of the task to delete
-     * @return true if the task was deleted successfully, false otherwise
-     */
-    public boolean deleteTask(int taskId) {
-        Optional<Task> taskOptional = taskRepository.findById(taskId);
-        
-        if (taskOptional.isPresent()) {
-            taskRepository.delete(taskOptional.get());
-            return true;  // Task was deleted
-        } else {
-            return false; // Task not found
-        }
-    }
-
     // -------------------------------------------------------------------------
     // 🔹 INTERNAL HELPERS
     // -------------------------------------------------------------------------
@@ -229,12 +209,14 @@ public class TaskService {
      * Permanently deletes a task by ID.
      *
      * @param taskId ID of the task
+     * @return
      * @throws TaskNotFoundException if no task exists with the given ID
      */
-    public void deleteTask(int taskId) {
+    public boolean deleteTask(int taskId) {
         Task task = findTaskById(taskId);
         taskRepository.delete(task);
         log.info("Deleted task with ID: {}", taskId);
+        return true;
     }
 
     public List<Task> getTasksByGroupId(int groupId) {

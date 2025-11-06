@@ -5,7 +5,6 @@ import com.app.auth.model.User;
 import com.app.auth.service.UserService;
 import com.app.dto.CreateUserRequest;
 import com.app.dto.LoginRequest;
-import com.app.dto.Response;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,19 +96,11 @@ public class AuthController {
  * @return ResponseEntity indicating whether the deletion was successful or not
  */
 @DeleteMapping("/delete")
-public ResponseEntity<String> deleteUserAccount() {
+public ResponseEntity<ResponseEntity<String>> deleteUserAccount() {
     log.info("Received request to delete user account");
 
-    boolean isDeleted = userService.deleteUserAccount();
-
-    if (isDeleted) {
-        log.info("User account deleted successfully");
-        return ResponseEntity.ok("User account deleted successfully.");
-    } else {
-        log.warn("User account not found or deletion failed");
-        return ResponseEntity.status(400).body("Failed to delete user account.");
+    return ResponseEntity.ok(userService.deleteUserAccount());
     }
-}
 
 
     // -------------------------------------------------------------------------

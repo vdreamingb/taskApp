@@ -40,15 +40,18 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/auth/whoami").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
+                        .requestMatchers(HttpMethod.DELETE,"/api/auth/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
 
                         .requestMatchers(HttpMethod.GET,"/api/tasks/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
                         .requestMatchers(HttpMethod.POST,"/api/tasks/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
                         .requestMatchers(HttpMethod.PUT,"/api/tasks/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
+                        .requestMatchers(HttpMethod.DELETE,"/api/tasks/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
                         .requestMatchers(HttpMethod.PUT, "/api/admin/tasks/**").hasAnyAuthority(ADMIN_ROLE)
                         .requestMatchers(HttpMethod.DELETE, "/api/admin/tasks/**").hasAnyAuthority(ADMIN_ROLE)
 
                         .requestMatchers(HttpMethod.GET,"/api/groups/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
                         .requestMatchers(HttpMethod.POST,"/api/groups/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
+                        .requestMatchers(HttpMethod.DELETE,"/api/groups/**").hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
 
                         .requestMatchers(HttpMethod.PUT,"/api/admin/groups/**").hasAnyAuthority(ADMIN_ROLE)
                         .requestMatchers(HttpMethod.DELETE,"/api/admin/groups/**").hasAnyAuthority(ADMIN_ROLE)

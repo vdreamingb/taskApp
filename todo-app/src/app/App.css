@@ -693,6 +693,7 @@ option{
   .aside{
     left: -200%;
     position: absolute;
+    z-index: 100;
   }
 
   .aside-top__header{
@@ -737,6 +738,10 @@ option{
     left: 0;
     position: fixed;
     background-color: #212121;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    gap: 20px;
   }
 }
 
@@ -762,6 +767,10 @@ option{
   .task-title{
     max-width: 150px;
   }
+  .change-lng{
+    left: 50%;
+  }
+  
 }
 
 @media(max-width: 623px){
@@ -824,6 +833,15 @@ option{
   margin-top: 15px;
 }
 
+@media(max-width:574px){
+  .auth-content{
+    padding: 40px 20px;
+  }
+  .form-title{
+    font-size: 36px;
+  }
+}
+
 @media(max-width: 442px){
   .profile-content{
     padding-left: 55px;
@@ -835,3 +853,48 @@ option{
     gap: 30px;
   }
 }
+
+/* language */
+.change-lng{
+  position: fixed;
+  bottom: 20px;
+  opacity: 0.6;
+  right: 10px;
+  z-index: 200;
+}
+
+.change-lng.active{
+  opacity: 1;
+}
+
+.change-lng__button{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #9E9E9E;
+  color: #000;
+}
+
+.options{
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  transition: all .3s ease-in-out;
+}
+
+.options.active{
+    width: max-content;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 5px;
+    background-color: #9E9E9E;
+    width: 90px;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 1;
+  }
