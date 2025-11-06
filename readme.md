@@ -98,6 +98,8 @@ Frontend respects following folder structure:
 
 - Components are organized by their purpose (e.g., auth, profile, buttons, etc.).
 
+- Global types and custom hooks
+
 6. 🧱 widgets/
 
 - Contains larger composite components that include smaller reusable parts.
