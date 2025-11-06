@@ -135,8 +135,6 @@ Frontend respects following folder structure:
 4. Validation - ensures that incoming data (e.g., from API requests) meets specific rules and constraints.
 
 
----
-
 ## Database 
 
 ### PostgreSQL
