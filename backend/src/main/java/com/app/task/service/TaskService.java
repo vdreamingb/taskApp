@@ -152,6 +152,24 @@ public class TaskService {
         return TaskDTO.toDto(task);
     }
 
+    
+    /**
+     * Deletes a specific task by its ID.
+     *
+     * @param taskId ID of the task to delete
+     * @return true if the task was deleted successfully, false otherwise
+     */
+    public boolean deleteTask(int taskId) {
+        Optional<Task> taskOptional = taskRepository.findById(taskId);
+        
+        if (taskOptional.isPresent()) {
+            taskRepository.delete(taskOptional.get());
+            return true;  // Task was deleted
+        } else {
+            return false; // Task not found
+        }
+    }
+
     // -------------------------------------------------------------------------
     // 🔹 INTERNAL HELPERS
     // -------------------------------------------------------------------------
