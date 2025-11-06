@@ -144,28 +144,52 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public ResponseEntity<?> changePassword(PasswordChangeRequest request) {
-        log.info("Changing user's password");
+          log.info("Attempting to change password for user: {}", request.getEmail());
 
-        Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
-        if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Response.builder().message(USER_NOT_FOUND_MSG).build());
-        }
+    // Validate request fields
+    if (request.getEmail() == null || request.getEmail().isBlank()
+            || request.getOldPassword() == null || request.getOldPassword().isBlank()
+            || request.getNewPassword() == null || request.getNewPassword().isBlank()) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Response.builder().message("Email, old password, and new password are required").build());
+    }
 
-        User user = optionalUser.get();
-        if (!user.isEnabled()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(Response.builder().message("User is disabled").build());
-        }
+    // Retrieve user
+    User user = userRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND_MSG));
 
-        if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
-            log.info("Invalid Password");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(Response.builder().message("Invalid password").build());
-        }
+    // Check if account is active
+    if (!user.isEnabled()) {
+        log.warn("Attempt to change password for disabled user: {}", request.getEmail());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Response.builder().message("User account is disabled").build());
+    }
 
-        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
-        return ResponseEntity.ok(userRepository.save(user));
+    // Validate old password
+    if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+        log.warn("Invalid old password for user: {}", request.getEmail());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Response.builder().message("Invalid old password").build());
+    }
+
+    // Prevent reuse of the same password
+    if (passwordEncoder.matches(request.getNewPassword(), user.getPassword())) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Response.builder().message("New password cannot be the same as the old password").build());
+    }
+
+
+           // Update password and timestamps
+    user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+    user.setUpdatedAt(LocalDateTime.now());
+    userRepository.save(user);
+
+    log.info("Password changed successfully for user: {}", user.getEmail());
+    return ResponseEntity.ok(Response.builder()
+            .message("Password changed successfully")
+            .build());
+
+        
     }
 
     // -------------------------------------------------------------------------
