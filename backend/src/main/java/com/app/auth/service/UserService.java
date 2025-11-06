@@ -17,4 +17,12 @@ public interface UserService {
     String disableUser(String email);
 
     ResponseEntity<?> changePassword(PasswordChangeRequest request);
+
+     /**
+     * Deletes the currently authenticated user's account.
+     *
+     * @return ResponseEntity indicating success or failure of the deletion
+     */
+    ResponseEntity<String> deleteUserAccount();
+    
 }
