@@ -103,6 +103,25 @@ public class GroupService {
         return savedGroup;
     }
 
+
+    
+    // -------------------------------------------------------------------------
+    // 🔹 DELETE GROUP
+    // -------------------------------------------------------------------------
+
+    /**
+     * Deletes a group by its ID.
+     *
+     * @param groupId the ID of the group to be deleted
+     */
+    public void deleteGroup(int groupId) {
+        Group group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new GroupNotFoundException("Group not found with ID: " + groupId));
+
+        groupRepository.delete(group); // Delete the group from the repository
+        log.info("Deleted group with ID: {}", groupId);
+    }
+
     // -------------------------------------------------------------------------
     // 🔹 INTERNAL HELPERS
     // -------------------------------------------------------------------------
