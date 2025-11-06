@@ -86,4 +86,24 @@ public class GroupController {
         log.info("Received request to create group '{}'", request.getName());
         return ResponseEntity.ok(groupService.createGroup(request));
     }
+
+
+    // -------------------------------------------------------------------------
+// 🔹 DELETE GROUP
+// -------------------------------------------------------------------------
+
+/**
+ * Deletes a group by its ID.
+ *
+ * @param groupId the ID of the group to be deleted
+ * @return ResponseEntity indicating whether the deletion was successful or not
+ */
+@DeleteMapping("/{groupId}/delete")
+public ResponseEntity<String> deleteGroup(@PathVariable int groupId) {
+    log.info("Received request to delete group with ID: {}", groupId);
+
+    groupService.deleteGroup(groupId); // Call the service layer to delete the group
+    return ResponseEntity.ok("Group deleted successfully.");
+}
+
 }
