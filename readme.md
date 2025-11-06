@@ -2,7 +2,7 @@
 
 ## Key features of our app:
  1. Simple and intuitive interface.
- 2. Code that respect programmming principles.
+ 2. Code that respect programming principles.
  3. Secure user authentication and data protection.
 
 ## Application Overview
@@ -29,23 +29,33 @@
 5. Git
 
 ## Instructions to run our app
+
 1. Create a new folder and init git using
 ```git init```
+
 2. Clone repository using
 ```git clone https://github.com/mariusss11/taskApp.git```
+
 3. If you have PostgreSQL running locally, stop it before proceeding.
+
 4. In cmd got to the folder and access the backend folder that will be inside taskApp folder.
 ```cd backend```
+
 5. Create docker container for db using
 ```docker-compose up -d```
+
 6. Open backend folder in intelij idea and run the code. Alternatively, you can run it directly from terminal using Maven:
 ```mvn spring-boot:run```
+
 7. Now in cmd(terminal on linux) go back to taskApp folder and access todo-app folder(folder with frontend)
 ``` cd ../todo-app ```
+
 8. Now you need to install all dependencies for frontend. Run command the following command(You need to have node.js installed):
 ```npm install```
+
 9. To run frontend you need to use following command:
 ```npm run dev```
+
 10. After running npm run dev, a link will appear in your terminal.
 Open it in your browser — that’s your running Task App 🎉
 
@@ -94,6 +104,8 @@ Frontend respects following folder structure:
 
 - Examples: forms, sidebars, or complex UI sections.
 
+
+---
 ## Tech Stack Used in Frontend
 
 1. TypeScript – adds static typing to JavaScript for safer, more maintainable code.
@@ -111,3 +123,68 @@ Frontend respects following folder structure:
 7. React Modal – for creating modal dialogs and pop-ups.
 
 8. React Query – manages server state and API data fetching efficiently.
+
+
+--- 
+
+## Tech Stack Used in Backend
+
+1. SpringBoot - provides a production-ready, opinionated framework for building Java-based web applications quickly.
+2. Spring Security - ensures secure authentication and authorization for users.
+3. Spring Data JPA - simplifies database interaction using the Java Persistence API (JPA).
+4. Validation - ensures that incoming data (e.g., from API requests) meets specific rules and constraints.
+
+
+---
+
+## Database 
+
+### PostgreSQL
+* Relational database used for persistent data storage.
+
+
+#### Advantages: 
+* Runs inside a Docker container for consistent development environments.
+* Flyway (optional but recommended)
+  * Used for version control of database schema. 
+  * Makes database migrations easy and traceable.
+
+
+---
+
+## Testing
+
+### JUnit & Mockito
+* Frameworks for writing unit and integration tests.
+* Ensures reliability and stability of backend logic.
+
+---
+
+## Containerization
+
+### Docker
+* Used to containerize both the application and database.
+* Simplifies deployment and ensures environment consistency.
+
+---
+
+### 📘 OpenAPI / Swagger
+
+#### Purpose: Provides automatic and interactive API documentation for the backend.
+
+##### How it helps:
+* Automatically generates a web-based UI where developers can explore and test API endpoints directly from the browser. 
+* Displays available routes, request parameters, and response formats clearly. 
+* Simplifies integration with frontend or third-party services by offering a standardized API contract.
+
+##### Implementation:
+* Integrated using the ```springdoc-openapi``` library in Spring Boot.
+
+After starting the backend, you can usually access the Swagger UI at: ```/swagger-ui.html```
+
+#### Benefits:
+
+* Improves developer experience and collaboration. 
+* Keeps API documentation always in sync with the codebase. 
+* Makes debugging and testing endpoints much faster.
+
