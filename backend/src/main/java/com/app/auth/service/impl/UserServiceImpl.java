@@ -203,6 +203,32 @@ public class UserServiceImpl implements UserService {
         return "Disabled successfully the user with the email: " + email;
     }
 
+
+     // -------------------------------------------------------------------------
+    // 🔹 DELETE USER ACCOUNT
+    // -------------------------------------------------------------------------
+
+    /**
+     * Deletes the currently authenticated user's account.
+     *
+     * @return ResponseEntity indicating success or failure of the deletion
+     */
+    @Override
+    public ResponseEntity<String> deleteUserAccount() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        // Retrieve the user by email (which is stored as username in Spring Security)
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        // Delete the user from the repository
+        userRepository.delete(user);
+
+        log.info("User account with email {} has been deleted successfully", username);
+
+        return ResponseEntity.ok("User account deleted successfully.");
+    }
+
     // -------------------------------------------------------------------------
     // 🔹 INTERNAL HELPERS
     // -------------------------------------------------------------------------
