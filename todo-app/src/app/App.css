@@ -512,9 +512,10 @@ option{
 
 
 .progress-dropdown{
-  max-width: 160px;
+  max-width: 190px;
   width: 100%;
   font-size: 20px;
+  gap: 10px;
 }
 
 .task-item{
@@ -559,32 +560,36 @@ option{
 }
 
 .task-progress{
-  transition: color .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  padding: 5px 15px;
+  color: #212121;
+  border-radius: 10px;
+  font-size: 18px;
 }
 
 .task-progress#not_done{
-  color: #FF0000;
+  background-color: #FF0000;
 }
 
 .task-progress#not_done:hover{
-  color: #960a0a;
+  background-color: #960a0a;
 }
 
 .task-progress#in_process{
-  color: #FFA600;
+  background-color: #FFA600;
 }
 
 
 .task-progress#in_process:hover{
-  color: #c7850c;
+  background-color: #c7850c;
 }
 
 .task-progress#done{
-  color: #00FF00;
+  background-color: #00FF00;
 }
 
 .task-progress#done:hover{
-  color: #079e07;
+  background-color: #079e07;
 }
 
 .task-create__date{

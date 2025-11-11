@@ -7,12 +7,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import TasksListPage from "../pages/profile/TasksListPage"
 import ProfilePage from "../pages/profile/ProfilePage"
 import GroupPage from "../pages/profile/GroupPage"
+import { LanguageProvider } from "../shared/context/LanguageContext"
 
 const queryClient = new QueryClient()
 
 const App = ():React.JSX.Element => {
     return <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+        <LanguageProvider>
+            <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LogIn />}/>
                 <Route path="/sign-up" element={<SignUp />}/>
@@ -24,6 +26,8 @@ const App = ():React.JSX.Element => {
                 <Route path="*" element={<>Error 404</>} />
             </Routes>
         </BrowserRouter>
+        </LanguageProvider>
+        
     </QueryClientProvider>
 }
 

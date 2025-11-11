@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { LanguageContext } from "../context/LanguageContext";
 
 const ChangeLanguage = ():React.JSX.Element => {
-    const [language, setLanguage] = useState<string>("ro")
+    const {language, setLanguage} = useContext(LanguageContext)
     const { i18n } = useTranslation()
     const [isActive, setIsActive] = useState<boolean>(false)
 
@@ -23,11 +24,11 @@ const ChangeLanguage = ():React.JSX.Element => {
             <div ref={optionsRef} className={"options"+`${isActive?" active":""}`}>
             <button onClick={() => changeLanguage("en")}>English</button>
             <button onClick={() => changeLanguage("ro")}>Română</button>
+            {/* <button onClick={() => changeLanguage("ru")}>Русский</button> */}
         </div>
-        <button className="change-lng__button" onClick={onClick}>
+            <button className="change-lng__button" onClick={onClick}>
             {language}
         </button>
-        
         </div>
     </div>
 }

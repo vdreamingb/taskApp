@@ -46,7 +46,9 @@ const Aside = ({ paths }: AsideType): React.JSX.Element => {
             </div>
           </div>
         </div>
-        <ChangeLanguage />
+          <ChangeLanguage />
+
+        
         <div className="aside-bottom">
           <LogOutButton />
           <ProfileLinkButton />
