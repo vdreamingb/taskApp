@@ -11,6 +11,7 @@ import CustomModal from "../../shared/ui/CustomModal";
 import useModal from "../../shared/custom-hooks/useModal";
 import CreateGroupForm from "./CreateGroupForm";
 import { useTranslation } from "react-i18next";
+import ChangeLanguage from "../../shared/ui/ChangeLanguage";
 
 const Aside = ({ paths }: AsideType): React.JSX.Element => {
   const modalProperties = useModal()
@@ -45,6 +46,7 @@ const Aside = ({ paths }: AsideType): React.JSX.Element => {
             </div>
           </div>
         </div>
+        <ChangeLanguage />
         <div className="aside-bottom">
           <LogOutButton />
           <ProfileLinkButton />

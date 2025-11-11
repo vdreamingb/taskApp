@@ -15,7 +15,10 @@ const customStyles = {
     borderRadius: 5,
     padding: 40,
     transition: "all .4s ease-in-out",
-    backgroundColor: "#000"
+    backgroundColor: "#000",
+    border: "none",
+    boxShadow: "10px 10px 25px #000",
+    opacity: 1000,
   },
 };
 

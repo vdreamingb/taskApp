@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { DeadlineTaskType, TaskType } from "../shared/types/task.types";
+import type { ApiTask } from "../shared/types/task.types";
 
 class TaskService {
   private path = "http://localhost:8010/api/tasks/";
@@ -30,8 +31,12 @@ class TaskService {
       if (response.status == 200) {
         return "Success";
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     }
   }
 
@@ -45,7 +50,7 @@ class TaskService {
       });
       if (response.status == 200) {
         const responseData = response.data;
-        const organizedData: TaskType[] = responseData.map((task) => {
+        const organizedData: TaskType[] = (responseData as ApiTask[]).map((task: ApiTask): TaskType => {
           return {
             id: task.id,
             title: task.title,
@@ -73,8 +78,8 @@ class TaskService {
                 })
                 .sort(
                   (a, b) =>
-                    new Date(b.deadline).getTime() -
-                    new Date(a.deadline).getTime()
+                    new Date(a.deadline).getTime() -
+                    new Date(b.deadline).getTime()
                 ),
             };
           }
@@ -82,11 +87,15 @@ class TaskService {
 
         return filteredData.sort(
           (a, b) =>
-            new Date(b.deadline).getTime() - new Date(a.deadline).getTime()
+            new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
         );
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     }
   }
   async changeTaskStatus(id: number, status: string) {
@@ -104,8 +113,12 @@ class TaskService {
           },
         }
       );
-    } catch (error) {
-      console.error(error);
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     }
   }
 

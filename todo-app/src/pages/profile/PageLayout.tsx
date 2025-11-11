@@ -3,7 +3,6 @@ import Aside from "../../widgets/profile/Aside";
 import useCheckAuth from "../../shared/custom-hooks/useCheckAuth";
 import useGroups from "../../shared/custom-hooks/useGroups";
 import { useMemo } from "react";
-import ChangeLanguage from "../../shared/ui/ChangeLanguage";
 
 const PageLayout = ({ content }: PageLaoutType) => {
   const auth = useCheckAuth();
@@ -17,7 +16,7 @@ const PageLayout = ({ content }: PageLaoutType) => {
       <div className="profile-page__layout">
         <Aside paths={paths ?? null} />
         <div className="profile-content">{content}</div>
-        <ChangeLanguage />
+        
       </div>
     );
   } else {

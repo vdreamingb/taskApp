@@ -19,7 +19,8 @@ const ChangeLanguage = ():React.JSX.Element => {
     }
 
     return <div className={"change-lng"+`${isActive?" active":""}`}>
-        <div ref={optionsRef} className={"options"+`${isActive?" active":""}`}>
+        <div className="change-lng__cont">
+            <div ref={optionsRef} className={"options"+`${isActive?" active":""}`}>
             <button onClick={() => changeLanguage("en")}>English</button>
             <button onClick={() => changeLanguage("ro")}>Română</button>
         </div>
@@ -27,7 +28,7 @@ const ChangeLanguage = ():React.JSX.Element => {
             {language}
         </button>
         
-        
+        </div>
     </div>
 }
 

@@ -20,6 +20,9 @@ const CreateGroupForm = ({closeModal}:CreateGroupFormType) => {
         mutationFn: async (data: CreateGroupType) => await groupService.createGroup(data.name, data.description),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ["groups"]})
+        },
+        onError: () => {
+            alert("Something went wrong")
         }
     })
     const onSubmit: SubmitHandler<CreateGroupType> = async (data) => {

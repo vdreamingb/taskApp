@@ -27,6 +27,17 @@ export interface FilterType{
     creationDate: string | undefined
 }
 
+export interface ApiTask {
+    id: number;
+    title: string;
+    description: string;
+    deadline: string;
+    createdAt: string;
+    status: string;
+    groupName: string;
+}
+
+
 export interface ITask{
     id: number
     title: string

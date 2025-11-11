@@ -475,6 +475,10 @@ option{
   color: #FF0000;
 }
 
+.progress-radio__label#not-done:hover{
+  color: #FF0000;
+}
+
 .progress-radio__label#done{
   color: #00FF00;
 }
@@ -550,16 +554,37 @@ option{
   overflow: hidden;
 }
 
+.ReactModalPortal{
+  transition: all .3s ease-in-out;
+}
+
+.task-progress{
+  transition: color .3s ease-in-out;
+}
+
 .task-progress#not_done{
   color: #FF0000;
+}
+
+.task-progress#not_done:hover{
+  color: #960a0a;
 }
 
 .task-progress#in_process{
   color: #FFA600;
 }
 
+
+.task-progress#in_process:hover{
+  color: #c7850c;
+}
+
 .task-progress#done{
   color: #00FF00;
+}
+
+.task-progress#done:hover{
+  color: #079e07;
 }
 
 .task-create__date{
@@ -568,14 +593,6 @@ option{
 
 .tasks-list__content{
   overflow: auto;
-}
-
-.tasks-list{
-  overflow: auto;
-  max-height: calc(100vh - 44px);
-  height: 100%;
-  padding-bottom: 70px;
-  scrollbar-width:none;
 }
 
 .tasks-list__item{
@@ -747,13 +764,19 @@ option{
 
 /* react-modal */
 .ReactModal__Overlay--after-open{
-  background-color: rgba(0,0,0,0.4) !important;
+  background: rgba(0,0,0,0.5) !important;
 }
 
 .ReactModalPortal{
   transition: all .4s ease-in-out;  
+  border: none;
 }
-
+.ReactModal__Content{
+  transition: all .3s ease-in-out;
+}
+.ReactModal__Content--after-open{
+  transition: all .3s ease-in-out;
+}
 
 @media(max-width: 847px){
   .profile-content{
@@ -861,6 +884,8 @@ option{
   opacity: 0.6;
   right: 10px;
   z-index: 200;
+  display: flex;
+  justify-content: right;
 }
 
 .change-lng.active{
@@ -898,3 +923,32 @@ option{
     border-radius: 10px;
     opacity: 1;
   }
+
+.change-lng__cont{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.profile-title::first-letter{
+  text-transform: uppercase;
+}
+
+.profile-content{
+  overflow: auto;
+}
+
+.task-groups{
+  max-height: 300px;
+  overflow: auto;
+}
+
+.task-groups::-webkit-scrollbar{
+  width: 1px;
+  color: #000;
+}
+
+
+.profile-content::-webkit-scrollbar{
+  width: 1px;
+}

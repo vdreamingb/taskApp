@@ -16,7 +16,11 @@ class UserSevice{
             }
         )
         } catch (error) {
-            console.log(error)
+            if (error instanceof Error) {
+                alert("Error: " + error.message);
+            } else {
+                alert("An unknown error occurred");
+            }
         }
     }
 
@@ -33,7 +37,11 @@ class UserSevice{
                 localStorage.removeItem("userId")
             }
         } catch (error) {
-            console.error(error)
+            if (error instanceof Error) {
+                alert("Error: " + error.message);
+            } else {
+                alert("An unknown error occurred");
+            }
         }
     }
 }

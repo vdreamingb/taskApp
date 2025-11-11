@@ -20,6 +20,9 @@ const TaskForm = ({closeModal}:TaskFormType):React.JSX.Element => {
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey:["tasks"]})
             closeModal()
+        },
+        onError: () => {
+            alert("Something went wrong")
         }
     })
     const onSubmit: SubmitHandler<TaskType> = (data) => {

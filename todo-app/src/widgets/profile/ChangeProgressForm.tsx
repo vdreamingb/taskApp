@@ -23,6 +23,9 @@ const ChangeProgressForm = ({id, closeModal}:ChangeType):React.JSX.Element => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ["tasks"]})
+        },
+        onError: () => {
+            alert("Something went wrong")
         }
     })
     const onSubmit:SubmitHandler<ProgressType> = async (data) => {

@@ -14,7 +14,11 @@ class AuthService{
                 return "Success"
             }
         } catch (error) {
-            console.error(error)
+            if (error instanceof Error) {
+                alert("Error: " + error.message);
+            } else {
+                alert("An unknown error occurred");
+            }
         }
     }
 
@@ -29,13 +33,18 @@ class AuthService{
                 return await this.login(email, password)
             }
         } catch (error) {
-            console.error(error)
+            if (error instanceof Error) {
+                alert("Error: " + error.message);
+            } else {
+                alert("An unknown error occurred");
+            }
         }
         
     }
 
     async whoAmI(){
-        const token = localStorage.getItem("userAuth")
+        try {
+            const token = localStorage.getItem("userAuth")
         const response = await axios.get("http://localhost:8010/api/auth/whoami", {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -50,6 +59,13 @@ class AuthService{
             username,
             email,
             role
+        }
+        } catch (error) {
+            if (error instanceof Error) {
+                alert("Error: " + error.message);
+            } else {
+                alert("An unknown error occurred");
+            }
         }
     }
 

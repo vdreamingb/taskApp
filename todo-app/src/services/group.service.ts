@@ -13,7 +13,11 @@ class GroupService {
         return response.data;
       }
     } catch (error) {
-      return "Something went wrong " + error;
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     }
   }
 
@@ -36,7 +40,11 @@ class GroupService {
         return "Success";
       }
     } catch (error) {
-      console.error("Something went wrong ", error);
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     }
   }
 
@@ -49,7 +57,11 @@ class GroupService {
         },
       });
     } catch (error) {
-      console.error(error);
+      if (error instanceof Error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("An unknown error occurred");
+      }
     }
   }
 }

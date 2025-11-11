@@ -19,7 +19,7 @@ const Content = ():React.JSX.Element => {
     useEffect(()=>{
         async function getData(){
             const data = await authService.whoAmI()
-            setUserData(data)
+            setUserData(data ?? null)
         }
         getData()
     },[])
