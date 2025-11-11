@@ -13,6 +13,9 @@ class AuthService{
                 localStorage.setItem("userId", responseData.data.id)
                 return "Success"
             }
+            else{
+                alert("Something went wrong")
+            }
         } catch (error) {
             if (error instanceof Error) {
                 alert("Error: " + error.message);

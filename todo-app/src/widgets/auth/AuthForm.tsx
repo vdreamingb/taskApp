@@ -33,9 +33,10 @@ const AuthForm = ({type}:FormType):React.JSX.Element => {
     return <div className="auth-content">
         <FormTitle type={type} />
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input placeholder={t("Email")} className="form-input" {...register("email", {required:true, minLength: 3})} />
-            {type==="sign-up"?errors.username && <p className="input-alert">Username is required and must constain at least 3 letters.</p>: ""}
+            <input type="email" placeholder={t("Email")} className="form-input" {...register("email", {required:true, minLength: 3})} />
+            
             {type==="sign-up"&&(<input placeholder={t("Username")} {...register("username", {required: true, minLength: 3})} className="form-input" />)}
+            {type==="sign-up"?errors.username && <p className="input-alert">Username is required and must constain at least 3 letters.</p>: ""}
             <input placeholder={t("Password")} type="password" {...register("password", {required: true, minLength:6, pattern:/^(?=.*[A-Z])(?=.*\d).+$/})} className="form-input"/>
             {type==="sign-up"?errors.password && <p className="input-alert">Password must contain at least one big letter one number and more than 6 characters</p>: ""}
             <button className="auth" type="submit">{type==="log-in"?t("Log in"): t("Sign up")}</button>
