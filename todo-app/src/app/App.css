@@ -520,6 +520,9 @@ option{
 
 .task-item{
   position: relative;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .task-item:not(:last-child){
@@ -654,9 +657,9 @@ option{
 .user-info{
   width: 100%;
   max-width: 400px;
-  /* box-shadow: 1px 1px 10px #757575; */
+  box-shadow: 1px 1px 9px rgb(117, 117, 117, 0.5);
   border-radius: 10px;
-  padding: 30px 20px;
+  padding: 70px 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -680,7 +683,7 @@ option{
 }
 
 .detailed-info__item{
-  font-size: 20px;
+  font-size: 24px;
 }
 
 
@@ -956,4 +959,16 @@ option{
 
 .profile-content::-webkit-scrollbar{
   width: 1px;
+}
+
+.progress-img{
+  width: 5px;
+  height: 5px;
+  background-color: #212121;
+  border-radius: 50%;
+}
+.task-progress{
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

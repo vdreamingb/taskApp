@@ -52,7 +52,7 @@ const Task = ({
         <p className="task-create__date">{t("Creation Date")}: {creationDate}</p>
         <div className="progress-dropdown">
           <button onClick={onChangeClick}  id={progress.toLowerCase()} className="task-progress">
-            {t(getProgressName(progress))}
+            {t(String(getProgressName(progress)))} 
           </button>
           <button className="dropdown-button" onClick={onClick}>
             <img
